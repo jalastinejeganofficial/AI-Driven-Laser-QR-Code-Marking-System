@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit QR Entry</title>
+</head>
+<body>
+    <h2>✏️ Edit QR Metadata</h2>
+    <form method="POST">
+        <label>Item:</label><br>
+        <input type="text" name="item" value="{{ record[1] }}"><br><br>
+
+        <label>Vendor:</label><br>
+        <input type="text" name="vendor" value="{{ record[2] }}"><br><br>
+
+        <label>Lot:</label><br>
+        <input type="text" name="lot" value="{{ record[3] }}"><br><br>
+
+        <label>Supply Date:</label><br>
+        <input type="date" name="supply_date" value="{{ record[4] }}"><br><br>
+
+        <label>Warranty:</label><br>
+        <input type="text" name="warranty" value="{{ record[5] }}"><br><br>
+
+        <label>Inspection Status:</label><br>
+        <select name="inspection_status">
+            <option value="Pending" {% if record[6] == "Pending" %}selected{% endif %}>Pending</option>
+            <option value="Passed" {% if record[6] == "Passed" %}selected{% endif %}>Passed</option>
+            <option value="Failed" {% if record[6] == "Failed" %}selected{% endif %}>Failed</option>
+        </select><br><br>
+
+        <label>Location:</label><br>
+        <input type="text" name="location" value="{{ record[7] }}"><br><br>
+
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Scan & Upload</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <h2>📷 Scan QR Code</h2>
+    <div id="reader" style="width:300px;"></div>
+
+    <h2>📁 Or Upload QR Image</h2>
+    <form method="POST" enctype="multipart/form-data" action="/upload-qr">
+        <input type="file" name="qr_image" accept="image/*">
+        <button type="submit">Scan</button>
+    </form>
+
+    <script>
+        function onScanSuccess(decodedText) {
+            window.location.href = "/view-details?code=" + encodeURIComponent(decodedText);
+        }
+
+        const html5QrCode = new Html5Qrcode("reader");
+        html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess);
+    </script>
+
+    <br><a href="/logout">🔓 Logout</a>
+</body>
+</html>

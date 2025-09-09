@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Metadata Dashboard</title>
+</head>
+<body>
+    <h2>📋 QR Metadata Dashboard</h2>
+
+    <form method="POST">
+        <label>Vendor:</label>
+        <input type="text" name="vendor">
+        <label>Inspection Status:</label>
+        <select name="inspection_status">
+            <option value="">--Select--</option>
+            <option value="Pending">Pending</option>
+            <option value="Passed">Passed</option>
+            <option value="Failed">Failed</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th><th>Item</th><th>Vendor</th><th>Lot</th><th>Supply Date</th>
+            <th>Warranty</th><th>Inspection</th><th>Location</th><th>Edit</th>
+        </tr>
+        {% for row in records %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>{{ row[7] }}</td>
+            <td><a href="/edit/{{ row[0] }}">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
