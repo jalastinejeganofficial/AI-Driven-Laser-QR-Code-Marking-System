@@ -1,19 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>QR Metadata</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Metadata</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7fc;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+      width: 420px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2c3e50;
+      font-size: 24px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #f9fafc;
+      margin: 8px 0;
+      padding: 12px 15px;
+      border-radius: 10px;
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid #e3e6ed;
+      transition: transform 0.2s;
+    }
+
+    li:hover {
+      transform: scale(1.02);
+      background: #eef2fb;
+    }
+
+    strong {
+      color: #34495e;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      padding: 12px;
+      background: #4e73df;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    a:hover {
+      background: #3751c5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
     <h2>🔍 QR Metadata Details</h2>
     <ul>
-        <li><strong>Item:</strong> {{ record[0] }}</li>
-        <li><strong>Vendor:</strong> {{ record[1] }}</li>
-        <li><strong>Lot:</strong> {{ record[2] }}</li>
-        <li><strong>Supply Date:</strong> {{ record[3] }}</li>
-        <li><strong>Warranty:</strong> {{ record[4] }}</li>
-        <li><strong>Inspection Status:</strong> {{ record[5] }}</li>
-        <li><strong>Location:</strong> {{ record[6] }}</li>
+      <li><strong>Item:</strong> {{ record[0] }}</li>
+      <li><strong>Vendor:</strong> {{ record[1] }}</li>
+      <li><strong>Lot:</strong> {{ record[2] }}</li>
+      <li><strong>Supply Date:</strong> {{ record[3] }}</li>
+      <li><strong>Warranty:</strong> {{ record[4] }}</li>
+      <li><strong>Inspection Status:</strong> {{ record[5] }}</li>
+      <li><strong>Location:</strong> {{ record[6] }}</li>
     </ul>
     <a href="/user-scan-upload">⬅️ Back to Scan/Upload</a>
+  </div>
 </body>
 </html>

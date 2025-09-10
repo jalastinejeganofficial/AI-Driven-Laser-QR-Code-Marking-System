@@ -1,28 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>QR Scan & Upload</title>
-    <script src="https://unpkg.com/html5-qrcode"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Scan & Upload</title>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7fc;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px 35px;
+      border-radius: 15px;
+      box-shadow: 0px 6px 18px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 600px;
+      animation: fadeIn 0.8s ease-in-out;
+      text-align: center;
+    }
+
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    #reader {
+      width: 100%;
+      max-width: 350px;
+      margin: 0 auto 25px auto;
+      border: 2px solid #4e73df;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin: 10px auto 15px auto;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      background: #4e73df;
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #3751c5;
+    }
+
+    a {
+      display: block;
+      margin-top: 25px;
+      text-decoration: none;
+      color: #4e73df;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #2c3e50;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
     <h2>📷 Scan QR Code</h2>
-    <div id="reader" style="width:300px;"></div>
+    <div id="reader"></div>
 
     <h2>📁 Or Upload QR Image</h2>
     <form method="POST" enctype="multipart/form-data" action="/upload-qr">
-        <input type="file" name="qr_image" accept="image/*">
-        <button type="submit">Scan</button>
+      <input type="file" name="qr_image" accept="image/*">
+      <button type="submit">Scan</button>
     </form>
 
-    <script>
-        function onScanSuccess(decodedText) {
-            window.location.href = "/view-details?code=" + encodeURIComponent(decodedText);
-        }
+    <a href="/logout">🔓 Logout</a>
+  </div>
 
-        const html5QrCode = new Html5Qrcode("reader");
-        html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess);
-    </script>
+  <script>
+    function onScanSuccess(decodedText) {
+      window.location.href = "/view-details?code=" + encodeURIComponent(decodedText);
+    }
 
-    <br><a href="/logout">🔓 Logout</a>
+    const html5QrCode = new Html5Qrcode("reader");
+    html5QrCode.start(
+      { facingMode: "environment" }, 
+      { fps: 10, qrbox: 250 }, 
+      onScanSuccess
+    );
+  </script>
 </body>
 </html>

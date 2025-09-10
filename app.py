@@ -22,11 +22,13 @@ class User(UserMixin):
 # DB connection
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="qr_marking_system"
-    )
+    host="localhost",
+    user="flaskuser",
+    password="FlaskPass123!",
+    database="qr_marking_system"
+)
+
+    
 
 # Load user from DB
 @login_manager.user_loader

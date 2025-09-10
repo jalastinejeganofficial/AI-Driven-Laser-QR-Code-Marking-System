@@ -1,42 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>QR Metadata Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Metadata Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7fc;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 25px;
+      font-size: 26px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.08);
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    label {
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    input, select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    input:focus, select:focus {
+      border: 1px solid #4e73df;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #4e73df;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #3751c5;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: #4e73df;
+      color: white;
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    tr:hover {
+      background: #f1f5ff;
+      transition: background 0.2s;
+    }
+
+    a {
+      color: #4e73df;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #2c4dbf;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-    <h2>📋 QR Metadata Dashboard</h2>
+  <h2>📋 QR Metadata Dashboard</h2>
 
-    <form method="POST">
-        <label>Vendor:</label>
-        <input type="text" name="vendor">
-        <label>Inspection Status:</label>
-        <select name="inspection_status">
-            <option value="">--Select--</option>
-            <option value="Pending">Pending</option>
-            <option value="Passed">Passed</option>
-            <option value="Failed">Failed</option>
-        </select>
-        <button type="submit">Search</button>
-    </form>
+  <form method="POST">
+    <label>Vendor:</label>
+    <input type="text" name="vendor">
+    
+    <label>Inspection Status:</label>
+    <select name="inspection_status">
+      <option value="">--Select--</option>
+      <option value="Pending">Pending</option>
+      <option value="Passed">Passed</option>
+      <option value="Failed">Failed</option>
+    </select>
 
-    <table border="1" cellpadding="5">
-        <tr>
-            <th>ID</th><th>Item</th><th>Vendor</th><th>Lot</th><th>Supply Date</th>
-            <th>Warranty</th><th>Inspection</th><th>Location</th><th>Edit</th>
-        </tr>
-        {% for row in records %}
-        <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>{{ row[2] }}</td>
-            <td>{{ row[3] }}</td>
-            <td>{{ row[4] }}</td>
-            <td>{{ row[5] }}</td>
-            <td>{{ row[6] }}</td>
-            <td>{{ row[7] }}</td>
-            <td><a href="/edit/{{ row[0] }}">Edit</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+    <button type="submit">🔍 Search</button>
+  </form>
+
+  <table>
+    <tr>
+      <th>ID</th><th>Item</th><th>Vendor</th><th>Lot</th><th>Supply Date</th>
+      <th>Warranty</th><th>Inspection</th><th>Location</th><th>Edit</th>
+    </tr>
+    {% for row in records %}
+    <tr>
+      <td>{{ row[0] }}</td>
+      <td>{{ row[1] }}</td>
+      <td>{{ row[2] }}</td>
+      <td>{{ row[3] }}</td>
+      <td>{{ row[4] }}</td>
+      <td>{{ row[5] }}</td>
+      <td>{{ row[6] }}</td>
+      <td>{{ row[7] }}</td>
+      <td><a href="/edit/{{ row[0] }}">✏️ Edit</a></td>
+    </tr>
+    {% endfor %}
+  </table>
 </body>
 </html>

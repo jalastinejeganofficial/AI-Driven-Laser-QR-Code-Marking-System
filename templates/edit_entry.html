@@ -1,37 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Edit QR Entry</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit QR Entry</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7fc;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px 35px;
+      border-radius: 15px;
+      box-shadow: 0px 6px 18px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 600px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: border 0.3s;
+    }
+
+    input:focus, select:focus {
+      border: 1px solid #4e73df;
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: #4e73df;
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #3751c5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
     <h2>✏️ Edit QR Metadata</h2>
     <form method="POST">
-        <label>Item:</label><br>
-        <input type="text" name="item" value="{{ record[1] }}"><br><br>
+      <label>Item:</label>
+      <input type="text" name="item" value="{{ record[1] }}">
 
-        <label>Vendor:</label><br>
-        <input type="text" name="vendor" value="{{ record[2] }}"><br><br>
+      <label>Vendor:</label>
+      <input type="text" name="vendor" value="{{ record[2] }}">
 
-        <label>Lot:</label><br>
-        <input type="text" name="lot" value="{{ record[3] }}"><br><br>
+      <label>Lot:</label>
+      <input type="text" name="lot" value="{{ record[3] }}">
 
-        <label>Supply Date:</label><br>
-        <input type="date" name="supply_date" value="{{ record[4] }}"><br><br>
+      <label>Supply Date:</label>
+      <input type="date" name="supply_date" value="{{ record[4] }}">
 
-        <label>Warranty:</label><br>
-        <input type="text" name="warranty" value="{{ record[5] }}"><br><br>
+      <label>Warranty:</label>
+      <input type="text" name="warranty" value="{{ record[5] }}">
 
-        <label>Inspection Status:</label><br>
-        <select name="inspection_status">
-            <option value="Pending" {% if record[6] == "Pending" %}selected{% endif %}>Pending</option>
-            <option value="Passed" {% if record[6] == "Passed" %}selected{% endif %}>Passed</option>
-            <option value="Failed" {% if record[6] == "Failed" %}selected{% endif %}>Failed</option>
-        </select><br><br>
+      <label>Inspection Status:</label>
+      <select name="inspection_status">
+        <option value="Pending" {% if record[6] == "Pending" %}selected{% endif %}>Pending</option>
+        <option value="Passed" {% if record[6] == "Passed" %}selected{% endif %}>Passed</option>
+        <option value="Failed" {% if record[6] == "Failed" %}selected{% endif %}>Failed</option>
+      </select>
 
-        <label>Location:</label><br>
-        <input type="text" name="location" value="{{ record[7] }}"><br><br>
+      <label>Location:</label>
+      <input type="text" name="location" value="{{ record[7] }}">
 
-        <button type="submit">Update</button>
+      <button type="submit">✅ Update</button>
     </form>
+  </div>
 </body>
 </html>
